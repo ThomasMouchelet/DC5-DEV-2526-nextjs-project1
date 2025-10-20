@@ -1,10 +1,10 @@
 "use client";
 
-import { usePost } from "@/hook/usePost";
+import { usePosts } from "@/hook/usePosts";
 import PostCard from "./PostCard";
 
 const PostList = () => {
-  const { posts } = usePost();
+  const { posts } = usePosts();
 
   return (
     <div className="container mx-auto">
