@@ -1,21 +1,20 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { useEffect } from "react";
+import { usePost } from "@/hook/usePost";
+import PostCard from "./PostCard";
 
 const PostList = () => {
-  useEffect(() => {
-    fetch("http://localhost:3000/api/posts")
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-      });
-  }, []);
+  const { posts } = usePost();
 
   return (
-    <div>
+    <div className="container mx-auto">
       <h1>Post List Component</h1>
-      <Button>Click me</Button>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        {posts.map((post) => (
+          <PostCard post={post} key={post.id} />
+        ))}
+      </div>
     </div>
   );
 };

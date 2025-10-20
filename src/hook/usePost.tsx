@@ -1,4 +1,5 @@
 import { Post } from "@/generated/prisma";
+import postService from "@/services/post.service";
 import { useEffect, useState } from "react";
 
 export const usePost = () => {
@@ -9,9 +10,12 @@ export const usePost = () => {
   }, []);
 
   const fetchPosts = async () => {
-    const res = await fetch("http://localhost:3000/api/posts");
-    const data = await res.json();
-    setPosts(data);
+    try {
+      const data = await postService.fetchPosts();
+      setPosts(data);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return { posts };
