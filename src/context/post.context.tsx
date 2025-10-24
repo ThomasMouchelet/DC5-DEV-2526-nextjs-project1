@@ -3,6 +3,7 @@
 import { Post } from "@/generated/prisma";
 import postService from "@/services/post.service";
 import { createContext, useEffect, useState } from "react";
+import { toast } from "sonner";
 
 interface PostContextType {
   posts: Post[];
@@ -41,9 +42,11 @@ export const PostProvider = ({ children }: { children: React.ReactNode }) => {
   const deletePost = async (id: string) => {
     try {
       await postService.deletePost(id);
-      fetchPosts();
     } catch (error) {
       console.error(error);
+    } finally {
+      toast.success("Post deleted successfully!");
+      fetchPosts();
     }
   };
 

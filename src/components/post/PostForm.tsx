@@ -8,6 +8,7 @@ import React from "react";
 import { PostDTO } from "@/types/post.type";
 import postService from "@/services/post.service";
 import { redirect } from "next/navigation";
+import { toast } from "sonner";
 
 function FormError({ children }: { children: React.ReactNode }) {
   return <p className="text-sm text-red-600">{children}</p>;
@@ -27,6 +28,7 @@ export default function PostForm() {
     } catch (error) {
       console.error("Failed to create post:", error);
     } finally {
+      toast.success("Post created successfully!");
       redirect("/posts");
     }
   };
