@@ -3,22 +3,17 @@
 import { PostContext } from "@/context/post.context";
 import PostCard from "./PostCard";
 import { useContext } from "react";
-import { Skeleton } from "../ui/skeleton";
+import PostListSkeleton from "./PostListSkeleton";
 
 const PostList = () => {
-  // call state post from context
   const { posts, isPending } = useContext(PostContext);
 
   return (
     <div className="container mx-auto">
-      <h1>Post List Component</h1>
+      <h1>Post List Component (Nombre de post: {posts.length})</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        {isPending && (
-          <>
-            <Skeleton className="h-[125px] w-[250px] rounded-xl" />
-          </>
-        )}
+        {isPending && <PostListSkeleton />}
 
         {posts.map((post) => (
           <PostCard post={post} key={post.id} />

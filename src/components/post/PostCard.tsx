@@ -1,19 +1,14 @@
+import { PostContext } from "@/context/post.context";
 import { Post } from "@/generated/prisma";
-import postService from "@/services/post.service";
 import { Trash } from "lucide-react";
 import Link from "next/link";
+import { useContext } from "react";
 
 interface PostCardProps {
   post: Post;
 }
 const PostCard = ({ post }: PostCardProps) => {
-  const handleDelete = async () => {
-    try {
-      await postService.deletePost(post.id);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const { deletePost } = useContext(PostContext);
 
   return (
     <div className="border p-4 rounded-md shadow-sm hover:shadow-md">
@@ -26,7 +21,10 @@ const PostCard = ({ post }: PostCardProps) => {
           : post.content}
       </p>
 
-      <Trash onClick={handleDelete} />
+      <Trash
+        onClick={() => deletePost(post.id)}
+        className="cursor-pointer text-red-400 hover:text-red-600 mt-4 translate-all"
+      />
     </div>
   );
 };
