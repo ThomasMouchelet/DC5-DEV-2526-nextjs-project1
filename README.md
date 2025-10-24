@@ -23,3 +23,15 @@
   # Seed
   npm run seed
 ```
+
+# TODO
+
+# 1
+
+- create page to add new post
+- create form post component
+- create route api to add new post
+
+# 2
+
+- create page to edit post
