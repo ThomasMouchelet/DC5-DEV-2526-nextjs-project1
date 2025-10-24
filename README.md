@@ -28,10 +28,8 @@
 
 # 1
 
-- create page to add new post
-- create form post component (React hook form)
-- create route api to add new post
+- Create model for user into prisma schema (email, password)
+- update schema
+- create form auth user (email, password) for sign in and sign up with react hook form
 
-# 2
-
-- create page to edit post
+- Implement authentication with JWT (NextAuth.js)
