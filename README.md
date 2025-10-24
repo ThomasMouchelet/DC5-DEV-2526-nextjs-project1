@@ -29,7 +29,7 @@
 # 1
 
 - create page to add new post
-- create form post component
+- create form post component (React hook form)
 - create route api to add new post
 
 # 2

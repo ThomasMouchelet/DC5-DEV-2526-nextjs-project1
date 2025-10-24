@@ -1,3 +1,5 @@
+import { PostDTO } from "@/types/post.type";
+
 const fetchPosts = async () => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/posts`);
   const data = await res.json();
@@ -16,10 +18,22 @@ const deletePost = async (id: string) => {
   });
 };
 
+const createPost = async (postDTO: PostDTO) => {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/posts`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(postDTO),
+  });
+  return response.json();
+};
+
 const postService = {
   fetchPosts,
   fetchPostById,
   deletePost,
+  createPost,
 };
 
 export default postService;
